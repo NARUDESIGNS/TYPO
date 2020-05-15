@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="app.css">
+    <link rel="stylesheet" href="css/all.css">
+    <title>TYPO</title>
+</head>
+<body>
+    <!-- intro page view -->
+    <div id="intro-view" class="intro-view">
+        <div class="logo-container">
+           <div class="logo">
+                <span><i class="fa fa-stopwatch"></i></span>
+           </div>
+            <p class="logo-name"><b>TYPO</b></p>
+            <h2>HOW FAST CAN YOU TYPE?</h2> 
+        </div>
+
+        <div class="how-to">
+            <h4>HOW TO PLAY</h4> 
+            <hr>
+            <p>Well he game is pretty easy to play. <br>
+                A text is given in a box, alongside a time limit. You are required to type the 
+                given text within the given time limit.
+            </p>
+            <p> There are 3 difficulty options : <br>
+                <b>Newbie</b> : 1s is allocated to a letter, so for 5 letter word like 
+                    'GAMER', 5s is the given time limit to complete typing.
+                <br><br>
+                <b>Master</b> : 3s is allocated to 5 letters. So for an 11 letter word, 6s is the
+                    given time limit to complete typing. But considering the leftover letter(s), as long as
+                    they aren't up to 5 in length, an additional 1s is given, therefore for an 11 letter word,
+                    7s is the given time limit.
+                <br><br>
+                <b>Pro</b> : 2s is allocated to 5 letters. So for an 11 letter word, 4s is the
+                    given time limit to complete typing. But considering the leftover letter(s), as long as
+                    they aren't up to 5 in length, an additional 1s is given, therefore for an 11 letter word,
+                    5s is the given time limit.
+                <br>
+                <p>
+                    For every letter typed, 1pt is been added to the score board located at the top of the page.
+                </p>
+                <p class="naru-designs">NARU DESIGNS &copy 2020</p>
+            </p>
+
+        </div>
+
+        <button id="start-button" class="start-button">START</button>
+    </div>
+
+    <!-- setup page view -->
+    <div id="setup-view" class="setup-view">
+        <div class="logo-container">
+            <div class="logo">
+                 <span><i class="fa fa-stopwatch"></i></span>
+            </div>
+             <p class="logo-name"><b>TYPO</b></p>
+        </div>
+        <h4>HIGH SCORE : <p id="high-score" class="high-score">0</p></h4>
+            
+        <div class="game-text-input">
+            <div class="time"><p>10s</p></div>
+            <p class="game-text">TYPOGRAPHY</p>
+            <button type="text" class="game-input">TYPOGRAPHY</button>
+        </div>
+
+        <div class="difficulty">
+            <section id="difficulty-selection" class="difficulty-selection">
+                <p id="difficulty">NEWBIE</p> 
+                <i class="fa fa-caret-down"></i>
+            </section>
+            <div id="difficulty-levels-container" class="difficulty-levels-container">
+                <p id="newbie" class="difficulty-levels">NEWBIE</p>
+                <p id="master" class="difficulty-levels">MASTER</p>
+                <p id="pro" class="difficulty-levels">PRO</p>
+            </div>
+            <button id="play-button" class="start-button">PLAY</button>
+        </div>
+        
+    </div>
+
+    <!-- game page view -->
+    <div id="game-view" class="game-view">
+        <div class="head-container">
+            <div class="logo-container">
+                <div class="logo">
+                     <span><i class="fa fa-stopwatch"></i></span>
+                </div>
+                 <p class="logo-name"><b>TYPO</b></p>
+            </div>
+            <div class="score-container">
+                <h4>SCORE</h4>
+                <p id="score" class="score">0</p>                
+            </div>
+
+            <span id="pause" class="pause"><i class="fa fa-pause"></i></span>
+        </div>
+
+        <div class="game-text-input">
+            <div id="time-limit-container" class="time"><p id="game-time">...</p></div>
+            <p id="game-text" class="game-text">...</p>
+            <input type="text" id="game-input" class="game-input" placeholder="click to start typing">
+            <audio src="sound/glitch-in-the-matrix.mp3" id="error-sound"></audio>
+            <audio src="sound/juntos.mp3" id="success-sound"></audio>
+        </div>
+
+        <div id="dim" class="dim"></div>
+
+        <div id="game-paused" class="game-paused">
+            <h3>SCORE <p id="paused-score" class="paused-high-score">0</p></h3>
+            <button id="resume" class="resume">RESUME</button>
+        </div>
+
+        <div id="game-over" class="game-over">
+            <h1>GAME OVER</h1>
+            <h3 id="new-high-score">SCORE</h3>
+            <p id="game-over-score">0</p>
+            <button id="play-again" class="play-again">PLAY AGAIN</button>
+        </div>  
+
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
