@@ -204,6 +204,10 @@ const game = {
                 this.stopTimer();
                 //remove focus from input
                 this.userInput.blur(); 
+                //if input happens to 
+                if(this.userInput.value.endsWith(' ')){
+                    this.userInput.value = this.userInput.value.trim();
+                }
                 //compute score
                 this.score.innerText = Number(this.score.innerText) + this.userInput.value.length;
                 setTimeout(() => {
