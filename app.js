@@ -1,3 +1,4 @@
+
 const game = {
     //DOM elements    
     introPage : document.getElementById('intro-view'),    
@@ -116,8 +117,8 @@ const game = {
         //empty the time limit and game text
         this.timeLimit.innerText = '...';
         this.gameText.innerText = '...';
-        this.userInput.focus(); //place input on focus
         setTimeout(() => {
+            this.userInput.focus(); //place input on focus
             let rndm = Math.floor(Math.random() * this.text.length);
             this.gameText.innerText = this.text[rndm];        
             this.getTimeLimit(this.text[rndm], this.difficulty.innerText); //get time limit
@@ -253,6 +254,8 @@ const game = {
         //if current score is greater than highscore, make current score the new highscore else leave it as it is
         this.newHighScore.innerText = this.score.innerText > this.highScore.innerText ? 'NEW HIGH SCORE' : 'SCORE';
         this.highScore.innerText = this.score.innerText > this.highScore.innerText ? this.score.innerText : this.highScore.innerText;
+        //reset input color
+        this.userInput.style.backgroundColor = 'var(--input-color, rgb(43, 44, 49))';
         //save highscore to memory
         this.saveHighScore();
 
@@ -269,6 +272,6 @@ const game = {
 }
 
 game.launch();
-//game.show(game.introPage);
+//game.show(game.setupPage);
 //game.score.innerText = 0;
 //this.score.innerText = '8944'                
