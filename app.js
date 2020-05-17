@@ -201,6 +201,10 @@ const game = {
                 setTimeout(() => {
                     this.userInput.classList.remove('shake');
                 }, 200);
+                //if input happens to end with space, trim
+                if(this.userInput.value.endsWith(' ')){
+                    this.userInput.value = this.userInput.value.trim();
+                }
             }
 
             //user inserts correct text
@@ -210,12 +214,9 @@ const game = {
                 this.stopTimer();
                 //remove focus from input
                 this.userInput.blur(); 
-                //if input happens to 
-                if(this.userInput.value.endsWith(' ')){
-                    this.userInput.value = this.userInput.value.trim();
-                }
                 //compute score
                 this.score.innerText = Number(this.score.innerText) + this.userInput.value.length;
+                
                 setTimeout(() => {
                     this.changeGameText();
                     this.userInput.value = ''; //empty input value
@@ -225,6 +226,14 @@ const game = {
             else{
                 this.userInput.style.backgroundColor = 'var(--input-color, rgb(43, 44, 49))';     
             }
+
+            //prevent user from deleting letter if it matches
+            document.addEventListener('keydown', (e) => {
+                if(e.key === 'Backspace' && this.gameText.innerText.startsWith(this.userInput.value)){
+                    e.preventDefault(); //prevent delete key from deleting 
+                    //do nothing
+                }
+            })
         });
 
         // --------------       PAUSE        --------------------
