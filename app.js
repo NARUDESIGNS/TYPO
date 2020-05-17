@@ -62,7 +62,7 @@ const game = {
         'If 10 plus 10 is 20, what is 11 plus 11?', 'Do not run away from it', 'It is who you are!', 'I just want to know', 'Do you like me? never mind', 'I took time to make this', 'I hope it is worth it though', '250 people suffered from it', 'They are all really fine now',
         'A girl is no one', 'I am the three eyed raven', 'I prefer iphone to other mobile devices', 'Do not ask me why', 'A lannister always pays his debt', 'Things we do for love', 'Tell him to come bend the knee', 'I would spare everyone of them', 'Kings Landing', 'High garden',
         'All hail the mother of Dragons', 'I give you my word, I am true to my word as always', 'Many have tried', 'None has defeated them in an open field', 'That which is dead may never die', 'A wise man once said...', 'Winter is coming', 'Tokyo and Nairobi are my favorites', 'How about you?',
-        'God loves me, I am so sure about it', 'What would you do if you won 10million Dollars?', 'I hope to be super good in programming in the nearest years', 'I do not tweet a lot, but I find wellpaidgeek interesting', 'Follow me on twitter, paulister007', 'If you beat your current highscore, you are a legend',
+        'God loves me, I am so sure about it', 'What would you do if you won 10million Dollars?', 'I hope to be super good in programming in the nearest years', 'I do not tweet a lot', 'I find you interesting', 'Follow me on twitter, paulister007', 'If you beat your current highscore, you are a legend',
         'Grenade', 'Supplies', 'Stitches', 'Producer', 'Blurry', 'Logical', 'Humble', 'Village', 'Unfold', 'Vibrant', 'Clearance', 'Govern', 'Nonsense', 'Studious', 'Department', 'Flowers', 'Squares', 'Bitter', 'Acivate', 'Squeeze', 'Separate', 'Operation', 'Alignment', 'Forgiven', 'Creative', 'Uphold', 'Decline', 'Followers', 'Sponsors',
     ],
 
@@ -230,26 +230,32 @@ const game = {
         // --------------       PAUSE        --------------------
         //paused button is clicked
         this.pause.addEventListener('click', () => {
-            this.show(this.dimBackground);
-            this.show(this.gamePaused);
-            this.stopTimer();
-            time = Number(this.timeLimit.innerText.replace('s', ''));
-            //this.timeLimit.innerHTML = time;
-            this.userInput.blur(); //remove focus from input
-            this.pausedScore.innerText = this.score.innerText;
+            if(this.timeLimit.innerText == '...'){
+                //do nothing
+            }
+            else{
+                this.show(this.dimBackground);
+                this.show(this.gamePaused);
+                this.stopTimer();
+                time = Number(this.timeLimit.innerText.replace('s', ''));
+                //this.timeLimit.innerHTML = time;
+                this.userInput.blur(); //remove focus from input
+                this.pausedScore.innerText = this.score.innerText;
 
-            //resume button is clicked
-            this.resume.addEventListener('click', () => {
-                this.hide(this.dimBackground);
-                this.hide(this.gamePaused);
-                //prevent timer from starting after already started
-                if(!this.timerStarted){
-                    this.startTimer();
-                    this.timerStarted = true;
-                    console.log('timer started');
-                }
-                this.userInput.focus();
-            });
+                //resume button is clicked
+                this.resume.addEventListener('click', () => {
+                    this.hide(this.dimBackground);
+                    this.hide(this.gamePaused);
+                    //prevent timer from starting after already started
+                    if(!this.timerStarted){
+                        this.startTimer();
+                        this.timerStarted = true;
+                        console.log('timer started');
+                    }
+                    this.userInput.focus();
+                });                
+            }
+
         });
     },
 
