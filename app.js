@@ -39,6 +39,7 @@ const game = {
     proPts : 2/5, //2s for 5 words
 
     timerStarted : false,
+    gameIsPaused : false,
     
     saveHighScore() {
         localStorage.setItem('getHighScore', (this.highScore.innerText));
@@ -63,7 +64,7 @@ const game = {
         'A girl is no one', 'I am the three eyed raven', 'I prefer iphone to other mobile devices', 'Do not ask me why', 'A lannister always pays his debt', 'Things we do for love', 'Tell him to come bend the knee', 'I would spare everyone of them', 'Kings Landing', 'High garden',
         'All hail the mother of Dragons', 'I give you my word, I am true to my word as always', 'Many have tried', 'None has defeated them in an open field', 'That which is dead may never die', 'A wise man once said...', 'Winter is coming', 'Tokyo and Nairobi are my favorites', 'How about you?',
         'God loves me, I am so sure about it', 'What would you do if you won 10million Dollars?', 'I hope to be super good in programming in the nearest years', 'I do not tweet a lot', 'I find you interesting', 'Follow me on twitter, paulister007', 'If you beat your current highscore, you are a legend',
-        'Grenade', 'Supplies', 'Stitches', 'Producer', 'Blurry', 'Logical', 'Humble', 'Village', 'Unfold', 'Vibrant', 'Clearance', 'Govern', 'Nonsense', 'Studious', 'Department', 'Flowers', 'Squares', 'Bitter', 'Acivate', 'Squeeze', 'Separate', 'Operation', 'Alignment', 'Forgiven', 'Creative', 'Uphold', 'Decline', 'Followers', 'Sponsors',
+        'Grenade', 'Supplies', 'Stitches', 'Producer', 'Blurry', 'Logical', 'Humble', 'Village', 'Unfold', 'Vibrant', 'Clearance', 'Govern', 'Nonsense', 'Studious', 'Department', 'Flowers', 'Squares', 'Bitter', 'Activate', 'Squeeze', 'Separate', 'Operation', 'Alignment', 'Forgiven', 'Creative', 'Uphold', 'Decline', 'Followers', 'Sponsors',
     ],
 
     show(element){
@@ -120,26 +121,28 @@ const game = {
     },
 
     changeGameText(){
-        //empty the time limit and game text
-        this.timeLimit.innerText = '...';
-        this.gameText.innerText = '...';
-        setTimeout(() => {
-            this.userInput.focus(); //place input on focus
-            let rndm = Math.floor(Math.random() * this.text.length);
-            this.gameText.innerText = this.text[rndm];        
-            this.getTimeLimit(this.text[rndm], this.difficulty.innerText); //get time limit
+        if(!this.gameIsPaused){
+            //empty the time limit and game text
+            this.timeLimit.innerText = '...';
+            this.gameText.innerText = '...';
+            setTimeout(() => {
+                this.userInput.focus(); //place input on focus
+                let rndm = Math.floor(Math.random() * this.text.length);
+                this.gameText.innerText = this.text[rndm];        
+                this.getTimeLimit(this.text[rndm], this.difficulty.innerText); //get time limit
 
-            this.text.splice(this.text.indexOf(this.text[rndm]), 1 ); //prevent a text from appearing twice
-            this.timeLimitContainer.style.border = '2px solid var(--green, rgb(54, 210, 145)';
-            this.timeLimitContainer.style.boxShadow = '0 5px 10px 5px rgb(54, 210, 145, 0.1)';
+                this.text.splice(this.text.indexOf(this.text[rndm]), 1 ); //prevent a text from appearing twice
+                this.timeLimitContainer.style.border = '2px solid var(--green, rgb(54, 210, 145)';
+                this.timeLimitContainer.style.boxShadow = '0 5px 10px 5px rgb(54, 210, 145, 0.1)';
 
-            //prevent timer from starting after already started
-            if(!this.timerStarted){
-                this.startTimer();
-                this.timerStarted = true;
-                console.log('timer started');
-            }
-        }, 2000);
+                //prevent timer from starting after already started
+                if(!this.timerStarted){
+                    this.startTimer();
+                    this.timerStarted = true;
+                    console.log('timer started');
+                }
+            }, 2000);
+        }
 
     },
 
@@ -216,7 +219,7 @@ const game = {
                 this.userInput.blur(); 
                 //compute score
                 this.score.innerText = Number(this.score.innerText) + this.userInput.value.length;
-                
+
                 setTimeout(() => {
                     this.changeGameText();
                     this.userInput.value = ''; //empty input value
@@ -243,6 +246,7 @@ const game = {
                 //do nothing
             }
             else{
+                this.gameIsPaused = true;
                 this.show(this.dimBackground);
                 this.show(this.gamePaused);
                 this.stopTimer();
@@ -253,6 +257,7 @@ const game = {
 
                 //resume button is clicked
                 this.resume.addEventListener('click', () => {
+                    this.gameIsPaused = false;
                     this.hide(this.dimBackground);
                     this.hide(this.gamePaused);
                     //prevent timer from starting after already started
