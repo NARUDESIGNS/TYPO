@@ -46,18 +46,19 @@ const game = {
 
     //retrieve highscore from memory if it exists
     getHighScore(){
-        if(localStorage.getHighScore) this.highScore.innerText = localStorage.getItem('getHighScore');
+        if(localStorage.getItem('getHighScore')) this.highScore.innerText = localStorage.getItem('getHighScore');
     },
 
     text : [
-        'Relocation', 'Emergencies', 'Interrogation', 'Delusional', 'Inadequate', 'propellant', 'underestimated', 'reconciliation', 'Bias', 'pagination',
-        'reach for your soul', 'search the drawers now', 'if you love it, take it', 'Don\'t take what belongs to someone else', 'reach for the skies, now is the time',
-        'Naru is working 100% to reach his goals', 'rest in peace Kobe Bryant', 'If you\'re here, then who\'s running heaven?', 'I prefer shorter girls, I like to wrap them in my arms', 'God save us all from COVID19',
-        'NOT everyone believes in your abilities, note that', 'nothing', 'If you don\'t see me by 5, then i\'m probably not coming today', 'make 3 wishes now, use your magic wand and it\'d come to pass', 'long texts sucks, i know',
-        'if 10 * 10 is 100, what is 11 * 5000?', 'Don\'t run away from it, it\'s who you are!', 'I just want to know, do you like me? never mind', 'I took time to make this, I hope it\'s worth it though', '5281 people suffered from it, but they\'re all really fine now',
-        'A girl is no one', 'I am the three eyed raven', 'I prefer iphone to other mobile devices, don\'t ask me why', 'A lannister always pays his debt', 'things we do for love', 'Tell him to come bend the knee and i\'d spare everyone of them', 'Kings Landing', 'High garden',
-        'All hail the mother of Dragons', 'I give you my word, I am true to my word as always', 'Many have tried, none has defeated them in an open field', 'That which is dead may never die', 'A wise man once said...', 'winter is coming', 'Tokyo and Nairobi are my favorites, how about you?',
-        'God loves me, i\'m so sure about it', 'What would you do if you won 10million Dollars?', 'I hope to be super good in programming in the nearest years', 'I don\'t tweet a lot, but I find wellpaidgeek interesting', 'follow me on twitter, paulister007', 'if you beat your current highscore, you\'re a legend',
+        'Relocation', 'Emergencies', 'Interrogation', 'Delusional', 'Inadequate', 'Propellant', 'Underestimated', 'Reconciliation', 'Bias', 'Pagination', 'Detectives', 'Abandoned',
+        'Reach for your soul', 'Search the drawers now', 'If you love it, take it', 'Do not take what belongs to someone else', 'Reach for the skies, now is the time', 'Objections are valid',
+        'Naru is working 100% to reach his goals', 'Rest in peace Kobe Bryant', 'If you are here, then who is running heaven?', 'I prefer shorter girls, I like to wrap them in my arms', 'God save us all from COVID19',
+        'NOT everyone believes in your abilities, note that', 'Nothing', 'If you do not see me by 5, then I am probably not coming today', 'Make 3 wishes now, use your magic wand and it would come to pass', 'Long texts sucks, i know', 'Just believe',
+        'If 10 plus 10 is 20, what is 11 plus 11?', 'Do not run away from it, it is who you are!', 'I just want to know, do you like me? never mind', 'I took time to make this, I hope it is worth it though', '5281 people suffered from it, but they are all really fine now',
+        'A girl is no one', 'I am the three eyed raven', 'I prefer iphone to other mobile devices, do not ask me why', 'A lannister always pays his debt', 'Things we do for love', 'Tell him to come bend the knee and i would spare everyone of them', 'Kings Landing', 'High garden',
+        'All hail the mother of Dragons', 'I give you my word, I am true to my word as always', 'Many have tried, none has defeated them in an open field', 'That which is dead may never die', 'A wise man once said...', 'Winter is coming', 'Tokyo and Nairobi are my favorites, how about you?',
+        'God loves me, I am so sure about it', 'What would you do if you won 10million Dollars?', 'I hope to be super good in programming in the nearest years', 'I do not tweet a lot, but I find wellpaidgeek interesting', 'Follow me on twitter, paulister007', 'If you beat your current highscore, you are a legend',
+        'Grenade', 'Supplies', 'Stitches', 'Producer', 'Blurry', 'Logical', 'Humble', 'Village', 'Unfold', 'Vibrant', 'Clearance', 'Govern', 'Nonsense', 'Studious', 'Department', 'Flowers', 'Squares', 'Bitter', 'Acivate', 'Squeeze', 'Separate', 'Operation', 'Alignment', 'Forgiven', 'Creative', 'Uphold', 'Decline', 'Followers', 'Sponsors',
     ],
 
     show(element){
@@ -256,8 +257,8 @@ const game = {
         this.userInput.blur(); //remove focus from input
         this.gameOverScore.innerText = this.score.innerText;
         //if current score is greater than highscore, make current score the new highscore else leave it as it is
-        this.newHighScore.innerText = this.score.innerText > this.highScore.innerText ? 'NEW HIGH SCORE' : 'SCORE';
-        this.highScore.innerText = this.score.innerText > this.highScore.innerText ? this.score.innerText : this.highScore.innerText;
+        this.newHighScore.innerText = Number(this.score.innerText) > Number(localStorage.getItem('getHighScore')) ? 'NEW HIGH SCORE' : 'SCORE';
+        this.highScore.innerText = Number(this.score.innerText) > Number(localStorage.getItem('getHighScore')) ? this.score.innerText : this.highScore.innerText;
         //reset input color
         this.userInput.style.backgroundColor = 'var(--input-color, rgb(43, 44, 49))';
         //save highscore to memory
