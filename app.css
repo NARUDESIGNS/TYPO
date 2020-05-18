@@ -360,7 +360,11 @@ body {
     font-style: italic;
     color: rgb(255, 255, 255);
 }
-.game-view .pause {
+.game-view .pause-restart {
+    display: flex;
+    flex-direction: column;
+}
+.game-view .pause, .restart {
     padding-top: 17px;
     text-align: center;
     width: 50px;
@@ -372,9 +376,22 @@ body {
     -ms-border-radius: 50%;
     -o-border-radius: 50%;
     cursor: pointer;
+    margin-top: 20px;
 }
 .game-view .pause:hover {
     background-color: rgb(16, 123, 218);
+}
+.game-view .restart{
+    transform: scale(0.8);
+    -webkit-transform: scale(0.8);
+    -moz-transform: scale(0.8);
+    -ms-transform: scale(0.8);
+    -o-transform: scale(0.8);
+    background-color: var(--green, rgb(54, 210, 145));
+    margin-top: 5px;
+}
+.game-view .restart:hover {
+    opacity: 0.8;
 }
 .dim {
     top: 0;

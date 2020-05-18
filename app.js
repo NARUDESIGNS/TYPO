@@ -1,4 +1,21 @@
 
+const textCopy = [
+        'Relocation', 'Emergencies', 'Interrogation', 'Delusional', 'Inadequate', 'Propellant', 'Underestimated', 
+        'Reconciliation', 'Bias', 'Pagination', 'Detectives', 'Abandoned', 'Mountain view',
+        'Reach for your soul', 'Search the drawers now', 'If you love it, take it', 'Take what belongs to you', 
+        'Reach for the skies', 'Now is the time', 'Objections are valid',
+        'Naru is working to reach his goals', 'Rest in peace Kobe Bryant', 'If you are here, smile', 
+        'I prefer shorter girls', 'I like to wrap them in my arms', 'God save us all from COVID19',
+        'NOT everyone believes in your abilities',  'Nothing will happen', 'Nothing', 'If you do not see me by 5...', 
+        'I am probably not coming today', 'Make 3 wishes now',  'Use your magic wand ', 'It would come to pass', 
+        'Long texts sucks, i know', 'Just believe',
+        'If 10 plus 10 is 20, what is 11 plus 11?', 'Do not run away from it', 'It is who you are!', 'I just want to know', 'Do you like me? never mind', 'I took time to make this', 'I hope it is worth it though', '250 people suffered from it', 'They are all really fine now',
+        'A girl is no one', 'I am the three eyed raven', 'I prefer iphone to other mobile devices', 'Do not ask me why', 'A lannister always pays his debt', 'Things we do for love', 'Tell him to come bend the knee', 'I would spare everyone of them', 'Kings Landing', 'High garden',
+        'All hail the mother of Dragons', 'I give you my word, I am true to my word as always', 'Many have tried', 'None has defeated them in an open field', 'That which is dead may never die', 'A wise man once said...', 'Winter is coming', 'Tokyo and Nairobi are my favorites', 'How about you?',
+        'God loves me, I am so sure about it', 'What would you do if you won 10million Dollars?', 'I hope to be super good in programming in the nearest years', 'I do not tweet a lot', 'I find you interesting', 'Follow me on twitter, paulister007', 'If you beat your current highscore, you are a legend',
+        'Grenade', 'Supplies', 'Stitches', 'Producer', 'Blurry', 'Logical', 'Humble', 'Village', 'Unfold', 'Vibrant', 'Clearance', 'Govern', 'Nonsense', 'Studious', 'Department', 'Flowers', 'Squares', 'Bitter', 'Activate', 'Squeeze', 'Separate', 'Operation', 'Alignment', 'Forgiven', 'Creative', 'Uphold', 'Decline', 'Followers', 'Sponsors',
+    ];
+
 const game = {
     //DOM elements    
     introPage : document.getElementById('intro-view'),    
@@ -50,22 +67,7 @@ const game = {
         if(localStorage.getItem('getHighScore')) this.highScore.innerText = localStorage.getItem('getHighScore');
     },
 
-    text : [
-        'Relocation', 'Emergencies', 'Interrogation', 'Delusional', 'Inadequate', 'Propellant', 'Underestimated', 
-        'Reconciliation', 'Bias', 'Pagination', 'Detectives', 'Abandoned',
-        'Reach for your soul', 'Search the drawers now', 'If you love it, take it', 'Take what belongs to you', 
-        'Reach for the skies', 'Now is the time', 'Objections are valid',
-        'Naru is working to reach his goals', 'Rest in peace Kobe Bryant', 'If you are here, smile', 
-        'I prefer shorter girls', 'I like to wrap them in my arms', 'God save us all from COVID19',
-        'NOT everyone believes in your abilities',  'Nothing will happen', 'Nothing', 'If you do not see me by 5...', 
-        'I am probably not coming today', 'Make 3 wishes now',  'Use your magic wand ', 'It would come to pass', 
-        'Long texts sucks, i know', 'Just believe',
-        'If 10 plus 10 is 20, what is 11 plus 11?', 'Do not run away from it', 'It is who you are!', 'I just want to know', 'Do you like me? never mind', 'I took time to make this', 'I hope it is worth it though', '250 people suffered from it', 'They are all really fine now',
-        'A girl is no one', 'I am the three eyed raven', 'I prefer iphone to other mobile devices', 'Do not ask me why', 'A lannister always pays his debt', 'Things we do for love', 'Tell him to come bend the knee', 'I would spare everyone of them', 'Kings Landing', 'High garden',
-        'All hail the mother of Dragons', 'I give you my word, I am true to my word as always', 'Many have tried', 'None has defeated them in an open field', 'That which is dead may never die', 'A wise man once said...', 'Winter is coming', 'Tokyo and Nairobi are my favorites', 'How about you?',
-        'God loves me, I am so sure about it', 'What would you do if you won 10million Dollars?', 'I hope to be super good in programming in the nearest years', 'I do not tweet a lot', 'I find you interesting', 'Follow me on twitter, paulister007', 'If you beat your current highscore, you are a legend',
-        'Grenade', 'Supplies', 'Stitches', 'Producer', 'Blurry', 'Logical', 'Humble', 'Village', 'Unfold', 'Vibrant', 'Clearance', 'Govern', 'Nonsense', 'Studious', 'Department', 'Flowers', 'Squares', 'Bitter', 'Activate', 'Squeeze', 'Separate', 'Operation', 'Alignment', 'Forgiven', 'Creative', 'Uphold', 'Decline', 'Followers', 'Sponsors',
-    ],
+    text : textCopy.map(string => { return string}),
 
     show(element){
         element.style.display = 'block';
@@ -127,11 +129,10 @@ const game = {
             this.gameText.innerText = '...';
             setTimeout(() => {
                 this.userInput.focus(); //place input on focus
-                let rndm = Math.floor(Math.random() * this.text.length);
+                rndm = Math.floor(Math.random() * this.text.length);
                 this.gameText.innerText = this.text[rndm];        
                 this.getTimeLimit(this.text[rndm], this.difficulty.innerText); //get time limit
 
-                this.text.splice(this.text.indexOf(this.text[rndm]), 1 ); //prevent a text from appearing twice
                 this.timeLimitContainer.style.border = '2px solid var(--green, rgb(54, 210, 145)';
                 this.timeLimitContainer.style.boxShadow = '0 5px 10px 5px rgb(54, 210, 145, 0.1)';
 
@@ -148,10 +149,9 @@ const game = {
 
     // --------------       ACTIVATE GAME FUNCTIONS        --------------------
     launch(){
+        console.log(this.text.length, textCopy.length, ' after launch');
         //retrieve highscore from memory
         this.getHighScore();
-        //game text backup
-        gameTextCopy = this.text;
         //load setup page
         this.start.addEventListener('click', () => {
             this.hide(this.introPage);
@@ -219,7 +219,9 @@ const game = {
                 this.userInput.blur(); 
                 //compute score
                 this.score.innerText = Number(this.score.innerText) + this.userInput.value.length;
-
+                //prevent a text from appearing twice
+                this.text.splice(this.text.indexOf(this.text[rndm]), 1 ); 
+                console.log(this.text.length, textCopy.length, 'after correct input');
                 setTimeout(() => {
                     this.changeGameText();
                     this.userInput.value = ''; //empty input value
@@ -288,12 +290,16 @@ const game = {
         this.userInput.style.backgroundColor = 'var(--input-color, rgb(43, 44, 49))';
         //save highscore to memory
         this.saveHighScore();
+        console.log(this.text.length, textCopy.length, 'after game over');
 
+        //PLAY AGAIN
         this.playAgain.addEventListener('click', () => {
             this.hide(this.dimBackground);
             this.hide(this.gameOver);
             this.score.innerText = 0;
-            this.text = gameTextCopy;
+            //game text backup
+            this.text = textCopy.map(string => { return string});
+            console.log(this.text.length, textCopy.length, ' after play again');
             this.userInput.value = '';
             this.changeGameText();
         })
@@ -302,6 +308,7 @@ const game = {
 }
 
 game.launch();
-//game.show(game.setupPage);
+// game.show(game.gamePage);
+// game.hide(game.introPage);
 //game.score.innerText = 0;
 //this.score.innerText = '8944'                
