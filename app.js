@@ -158,7 +158,7 @@ const game = {
         console.log(this.text.length, textCopy.length, ' after launch');
         //retrieve highscore from memory
         this.getHighScore();
-        //load setup page
+        //--------------- load setup page by clicking start -----------------
         this.start.addEventListener('click', () => {
             this.hide(this.introPage);
             this.show(this.setupPage);
@@ -192,7 +192,7 @@ const game = {
             this.difficulty.innerText = this.proBtn.innerText.toUpperCase();
         })
 
-        //user starts game by clicking play button
+        //------------------ user starts game by clicking play button -----------------
         this.play.addEventListener('click', () => {
             this.hide(this.setupPage);
             this.show(this.gamePage);
@@ -202,18 +202,19 @@ const game = {
 
         //process user input
         this.userInput.addEventListener('input', () => {
-            //user inserts wrong text
-            if(!this.gameText.innerText.startsWith(this.userInput.value)){
+            //---------- user inserts wrong text -----------
+
+            if(!this.gameText.innerText.startsWith(this.userInput.value)){            
+                //if input happens to end with space, trim it
+                if(this.userInput.value.endsWith(' ')){
+                    this.userInput.value = this.userInput.value.trim();
+                }
                 this.userInput.style.backgroundColor = 'var(--red, rgb(255, 93, 93))';
                 this.userInput.classList.add('shake');
                 this.errorTone.play();
                 setTimeout(() => {
                     this.userInput.classList.remove('shake');
                 }, 200);
-                //if input happens to end with space, trim
-                if(this.userInput.value.endsWith(' ')){
-                    this.userInput.value = this.userInput.value.trim();
-                }
             }
 
             //user inserts correct text
@@ -307,8 +308,15 @@ const game = {
             this.yesRestart.addEventListener('click', () => {
                 this.hide(this.dimBackground);
                 this.hide(this.restartView);
+                this.score.innerText = 0;
+                //game text backup
+                this.text = textCopy.map(string => { return string});
+                console.log(this.text.length, textCopy.length, ' after restart');
+                this.userInput.value = '';
+                this.hide(this.gamePage);
+                this.show(this.setupPage);
                 //reload the page
-                location.reload(); 
+                // location.reload(); 
             })
             
         });

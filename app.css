@@ -460,9 +460,8 @@ body {
 .game-view .game-restart {
     padding: 35px;
 }
-.game-restart h3 {
+.game-restart h4 {
     line-height: 1.4;
-    font-weight: 100;
 }
 .no-restart, .yes-restart {
     background-color: var(--blue, rgb(22, 146, 254));
