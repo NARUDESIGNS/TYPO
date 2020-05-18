@@ -34,6 +34,7 @@ const game = {
     gamePage : document.getElementById('game-view'),
     score : document.getElementById('score'),
     pause : document.getElementById('pause'),
+    restart : document.getElementById('restart'),
     timeLimit : document.getElementById('game-time'),
     timeLimitContainer : document.getElementById('time-limit-container'),
     gameText : document.getElementById('game-text'),
@@ -42,7 +43,10 @@ const game = {
     errorTone : document.getElementById('error-sound'),
 
     dimBackground : document.getElementById('dim'),
-    gamePaused : document.getElementById('game-paused'),
+    pausedView : document.getElementById('game-paused'),
+    restartView : document.getElementById('game-restart'),
+    noRestart : document.getElementById('no-restart'),
+    yesRestart : document.getElementById('yes-restart'),
     pausedScore : document.getElementById('paused-score'),
     resume : document.getElementById('resume'),
 
@@ -57,6 +61,7 @@ const game = {
 
     timerStarted : false,
     gameIsPaused : false,
+    inputIsValid : false,
     
     saveHighScore() {
         localStorage.setItem('getHighScore', (this.highScore.innerText));
@@ -143,6 +148,7 @@ const game = {
                     console.log('timer started');
                 }
             }, 2000);
+            this.inputIsValid = false;
         }
 
     },
@@ -215,6 +221,7 @@ const game = {
                 this.userInput.style.backgroundColor = 'var(--green, rgb(54, 210, 145))';
                 this.successTone.play();
                 this.stopTimer();
+                this.inputIsValid = true;
                 //remove focus from input
                 this.userInput.blur(); 
                 //compute score
@@ -244,16 +251,15 @@ const game = {
         // --------------       PAUSE        --------------------
         //paused button is clicked
         this.pause.addEventListener('click', () => {
-            if(this.timeLimit.innerText == '...'){
+            if(this.timeLimit.innerText == '...' || this.inputIsValid == true){
                 //do nothing
             }
             else{
                 this.gameIsPaused = true;
                 this.show(this.dimBackground);
-                this.show(this.gamePaused);
+                this.show(this.pausedView);
                 this.stopTimer();
                 time = Number(this.timeLimit.innerText.replace('s', ''));
-                //this.timeLimit.innerHTML = time;
                 this.userInput.blur(); //remove focus from input
                 this.pausedScore.innerText = this.score.innerText;
 
@@ -261,7 +267,8 @@ const game = {
                 this.resume.addEventListener('click', () => {
                     this.gameIsPaused = false;
                     this.hide(this.dimBackground);
-                    this.hide(this.gamePaused);
+                    this.hide(this.pausedView); 
+                    
                     //prevent timer from starting after already started
                     if(!this.timerStarted){
                         this.startTimer();
@@ -273,6 +280,39 @@ const game = {
             }
 
         });
+
+        // --------------       RESTART        --------------------
+        //restart button is clicked
+        this.restart.addEventListener('click', () => {
+            this.show(this.dimBackground);
+            this.show(this.restartView);
+            this.stopTimer();
+            time = Number(this.timeLimit.innerText.replace('s', ''));
+            this.userInput.blur(); //remove focus from input
+
+            //user discards restart
+            this.noRestart.addEventListener('click', () => {
+                this.hide(this.dimBackground);
+                this.hide(this.restartView);
+                //prevent timer from starting after already started
+                if(!this.timerStarted){
+                    this.startTimer();
+                    this.timerStarted = true;
+                    console.log('timer started');
+                }
+                this.userInput.focus();
+            })
+
+            //user confirms restart
+            this.yesRestart.addEventListener('click', () => {
+                this.hide(this.dimBackground);
+                this.hide(this.restartView);
+                //reload the page
+                location.reload(); 
+            })
+            
+        });
+           
     },
 
     //GAME OVER
@@ -304,7 +344,7 @@ const game = {
             this.changeGameText();
         })
     },
-
+    
 }
 
 game.launch();

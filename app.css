@@ -403,7 +403,7 @@ body {
     opacity: 0.7;
     display: none;
 }
-.game-view .game-paused, .game-view .game-over {
+.game-view .game-paused, .game-view .game-over, .game-view .game-restart{
     padding: 50px;
     width: 300px;
     height: auto;
@@ -456,4 +456,33 @@ body {
 .game-over h3{
     margin-top: 10px;
     margin-bottom: 10px;
+}
+.game-view .game-restart {
+    padding: 35px;
+}
+.game-restart h3 {
+    line-height: 1.4;
+    font-weight: 100;
+}
+.no-restart, .yes-restart {
+    background-color: var(--blue, rgb(22, 146, 254));
+    border: none;
+    text-align: center;
+    color: white;
+    font-size: 13px;
+    padding: 10px 35px;
+    margin-top: 15px;
+    border-radius: 30px;
+    -webkit-border-radius: 30px;
+    -moz-border-radius: 30px;
+    -ms-border-radius: 30px;
+    -o-border-radius: 30px;
+    cursor: pointer;
+}
+.no-restart:hover, .yes-restart:hover {
+    opacity: 0.8;
+}
+.game-restart .no-restart {
+    background-color: var(--primary-color);
+    margin-right: 20px;
 }
