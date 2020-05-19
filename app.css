@@ -58,7 +58,7 @@ body {
 /* intro page view */
 .intro-view {
     width: 100%;
-    /* max-height: 100vh; */
+    /*max-height: 100vh;*/
     background-color: var(--secondary-color, rgb(29, 30, 33));
     z-index: 0;
     position: absolute;
@@ -66,8 +66,14 @@ body {
     display: flex;
     flex-direction: column;
     padding: 0 7%;
-    display: flex;
-    /* display: none; */
+    /*display: none;*/
+    max-width: 1500px;
+    left: 50%;
+    transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    -o-transform: translateX(-50%);
 }
 .naru-designs{
     text-align: center;
@@ -316,6 +322,13 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-evenly;
+    max-width: 800px;
+    left: 50%;
+    transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    -o-transform: translateX(-50%);
 }
 .head-container .logo-container {
     margin: 20px 0;

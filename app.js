@@ -198,26 +198,28 @@ const game = {
             this.show(this.gamePage);
             //change game texts
             this.changeGameText();
-        })
+        });
 
         //process user input
         this.userInput.addEventListener('input', () => {
             //---------- user inserts wrong text -----------
-
-            if(!this.gameText.innerText.startsWith(this.userInput.value)){            
-                //if input happens to end with space, trim it
+            //if input happens to end with space, trim it
+            if(!this.gameText.innerText.startsWith(this.userInput.value)){     
                 if(this.userInput.value.endsWith(' ')){
                     this.userInput.value = this.userInput.value.trim();
                 }
+            }
+            
+            if(!this.gameText.innerText.startsWith(this.userInput.value)){            
                 this.userInput.style.backgroundColor = 'var(--red, rgb(255, 93, 93))';
                 this.userInput.classList.add('shake');
                 this.errorTone.play();
-                setTimeout(() => {
+                setTimeout(() => {  
                     this.userInput.classList.remove('shake');
                 }, 200);
             }
 
-            //user inserts correct text
+            //----------- user inserts correct text ----------
             else if(this.gameText.innerText == this.userInput.value){
                 this.userInput.style.backgroundColor = 'var(--green, rgb(54, 210, 145))';
                 this.successTone.play();
@@ -302,7 +304,7 @@ const game = {
                     console.log('timer started');
                 }
                 this.userInput.focus();
-            })
+            });
 
             //user confirms restart
             this.yesRestart.addEventListener('click', () => {
@@ -317,7 +319,7 @@ const game = {
                 this.show(this.setupPage);
                 //reload the page
                 // location.reload(); 
-            })
+            });
             
         });
            
