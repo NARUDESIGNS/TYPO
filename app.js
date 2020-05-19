@@ -51,6 +51,7 @@ const game = {
     resume : document.getElementById('resume'),
 
     gameOver : document.getElementById('game-over'),
+    gameOverDifficulty : document.getElementById('game-over-difficulty'),
     gameOverScore : document.getElementById('game-over-score'),
     newHighScore : document.getElementById('new-high-score'),
     playAgain : document.getElementById('play-again'),
@@ -176,6 +177,7 @@ const game = {
             this.masterBtn.style.background = 'none';
             this.proBtn.style.background = 'none';
             this.difficulty.innerText = this.newbieBtn.innerText.toUpperCase();
+            this.gameOverDifficulty.innerText = ` • ${this.difficulty.innerText} •`;
         })
         
         this.masterBtn.addEventListener('click', () => {
@@ -183,6 +185,7 @@ const game = {
             this.newbieBtn.style.background = 'none';
             this.proBtn.style.background = 'none';
             this.difficulty.innerText = this.masterBtn.innerText.toUpperCase();
+            this.gameOverDifficulty.innerText = ` • ${this.difficulty.innerText} •`;
         })
 
         this.proBtn.addEventListener('click', () => {
@@ -190,6 +193,7 @@ const game = {
             this.masterBtn.style.background = 'none';
             this.newbieBtn.style.background = 'none';
             this.difficulty.innerText = this.proBtn.innerText.toUpperCase();
+            this.gameOverDifficulty.innerText = ` • ${this.difficulty.innerText} •`;
         })
 
         //------------------ user starts game by clicking play button -----------------
