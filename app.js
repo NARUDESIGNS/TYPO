@@ -155,6 +155,8 @@ const game = {
 
     // --------------       ACTIVATE GAME FUNCTIONS        --------------------
     launch(){
+        //this value is used to determine if user has beaten his/her high score
+        isNewHighScore = false;
         console.log(this.text.length, textCopy.length, ' after launch');
         //retrieve highscore from memory
         this.getHighScore();
@@ -240,6 +242,15 @@ const game = {
                 this.userInput.blur(); 
                 //compute score
                 this.score.innerText = Number(this.score.innerText) + this.userInput.value.length;
+                //shake if score is the new high score
+                if(Number(this.score.innerText > Number(this.highScore.innerText)) && isNewHighScore == false){
+                        this.score.classList.add('shake');
+                        setTimeout(() => {
+                            this.score.classList.remove('shake');
+                            isNewHighScore = true;
+                        }, 1000);                        
+                }
+
                 //prevent a text from appearing twice
                 this.text.splice(this.text.indexOf(this.text[rndm]), 1 ); 
                 console.log(this.text.length, textCopy.length, 'after correct input');
@@ -321,8 +332,7 @@ const game = {
                 this.userInput.value = '';
                 this.hide(this.gamePage);
                 this.show(this.setupPage);
-                //reload the page
-                // location.reload(); 
+                isNewHighScore = false; 
             });
             
         });
@@ -345,6 +355,7 @@ const game = {
         //save highscore to memory
         this.saveHighScore();
         console.log(this.text.length, textCopy.length, 'after game over');
+        isNewHighScore = false; 
 
         //PLAY AGAIN
         this.playAgain.addEventListener('click', () => {
