@@ -205,6 +205,14 @@ const game = {
             this.changeGameText();
         });
 
+        //prevent user from deleting letter if it matches
+        document.addEventListener('keydown', (e) => {
+            if(e.key === 'Backspace' && this.gameText.innerText.startsWith(this.userInput.value)){
+                e.preventDefault(); //prevent delete key from deleting 
+                //do nothing
+            }
+        });
+
         //process user input
         this.userInput.addEventListener('input', () => {
             //---------- user inserts wrong text -----------
@@ -214,14 +222,6 @@ const game = {
                     this.userInput.value = this.userInput.value.trim();
                 }
             }
-            
-            //prevent user from deleting letter if it matches
-            document.addEventListener('keydown', (e) => {
-                if(e.key === 'Backspace' && this.gameText.innerText.startsWith(this.userInput.value)){
-                    e.preventDefault(); //prevent delete key from deleting 
-                    //do nothing
-                }
-            });
 
             if(!this.gameText.innerText.startsWith(this.userInput.value)){            
                 this.userInput.style.backgroundColor = 'var(--red, rgb(255, 93, 93))';
