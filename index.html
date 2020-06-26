@@ -23,10 +23,10 @@
             <h4>HOW TO PLAY</h4> 
             <hr>
             <p>Well the game is pretty easy to play. <br>
-                A text is given in a box, alongside a time limit. You are required to type the 
+                A text is given in a box alongside a time limit. You are required to type the 
                 given text within the given time limit.
             </p>
-            <p> There are 3 difficulty options : <br>
+            <!-- <p> There are 3 difficulty options : <br>
                 <b>Newbie</b> : 1s is allocated to a letter, so for 5 letter word like 
                     'GAMER', 5s is the given time limit to complete typing.
                 <br><br>
@@ -39,7 +39,7 @@
                     given time limit to complete typing. But considering the leftover letter(s), as long as
                     they aren't up to 5 in length, an additional 1s is given, therefore for an 11 letter word,
                     5s is the given time limit.
-                <br>
+                <br> -->
                 <p>
                     For every letter typed, 1pt is being added to the score board located at the top of the page.
                 </p>
@@ -68,6 +68,16 @@
         </div>
 
         <div class="difficulty">
+            <div id="tool-tip" class="tool-tip-container">
+                <div class="tool-tip">
+                    <p id="tool-tip-message">
+                        <b>Newbie</b> <br>
+                        1s is allocated to a letter, so for 5 letter word like 
+                        'GAMER', 5s is the given time limit to complete typing.
+                    </p>
+                    <div class="triangle"></div> 
+                </div>   
+            </div>
             <section id="difficulty-selection" class="difficulty-selection">
                 <p id="difficulty">NEWBIE</p> 
                 <i class="fa fa-caret-down"></i>

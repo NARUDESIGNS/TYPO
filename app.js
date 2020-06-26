@@ -22,6 +22,8 @@ const game = {
 
     setupPage : document.getElementById('setup-view'),
     highScore : document.getElementById('high-score'),
+    toolTip : document.getElementById('tool-tip'),
+    toolTipMessage : document.getElementById('tool-tip-message'),
     difficulty : document.getElementById('difficulty'),
     difficultySelection : document.getElementById('difficulty-selection'),
     difficultySelectionContainer : document.getElementById('difficulty-levels-container'),
@@ -153,6 +155,15 @@ const game = {
 
     },
 
+    //---------------- LOG DIFFICULTY INFO -------------------------
+    logToolTip(message){
+        this.toolTipMessage.innerHTML = message;
+        this.toolTip.style.display = "block";
+        timeout = setTimeout(() => {
+            this.toolTip.style.display = "none";
+        }, 25000);
+    },
+
     // --------------       ACTIVATE GAME FUNCTIONS        --------------------
     launch(){
         //this value is used to determine if user has beaten his/her high score
@@ -164,12 +175,26 @@ const game = {
         this.start.addEventListener('click', () => {
             this.hide(this.introPage);
             this.show(this.setupPage);
+            setTimeout(() => {
+                message = `<b>Newbie</b> <br>
+                1s is allocated to a letter, so for 5 letter word like 
+                'GAMER', 5s is the given time limit to complete typing.`;
+                this.logToolTip(message);
+            }, 1500);
         });
 
         //display difficulty options
         this.difficultySelection.addEventListener('click', () => {
             if(this.difficultySelectionContainer.style.display != 'block') this.show(this.difficultySelectionContainer);
-            else this.hide(this.difficultySelectionContainer);
+            //else this.hide(this.difficultySelectionContainer);
+            else {
+                this.difficultySelectionContainer.classList.add('slide-up');
+                this.toolTip.style.display = "none";
+                setTimeout(() => {
+                    this.hide(this.difficultySelectionContainer);
+                    this.difficultySelectionContainer.classList.remove('slide-up');
+                }, 200)
+            }
         })
 
         //user selects difficulty level; newbie, master or pro
@@ -179,6 +204,10 @@ const game = {
             this.proBtn.style.background = 'none';
             this.difficulty.innerText = this.newbieBtn.innerText.toUpperCase();
             this.gameOverDifficulty.innerText = ` • ${this.difficulty.innerText} •`;
+            message = `<b>Newbie</b> <br> 1s is allocated to a letter, so for 5 letter word like 
+            'GAMER', 5s is the given time limit to complete typing.`;
+            clearTimeout(timeout);
+            this.logToolTip(message);
         })
         
         this.masterBtn.addEventListener('click', () => {
@@ -187,6 +216,12 @@ const game = {
             this.proBtn.style.background = 'none';
             this.difficulty.innerText = this.masterBtn.innerText.toUpperCase();
             this.gameOverDifficulty.innerText = ` • ${this.difficulty.innerText} •`;
+            message = `<b>Master</b> <br> 3s is allocated to 5 letters. So for an 11 letter word, 6s is the
+            given time limit to complete typing. But considering the leftover letter(s), as long as
+            they aren't up to 5 in length, an additional 1s is given, therefore for an 11 letter word,
+            7s is the given time limit.`;
+            clearTimeout(timeout);
+            this.logToolTip(message);
         })
 
         this.proBtn.addEventListener('click', () => {
@@ -195,6 +230,12 @@ const game = {
             this.newbieBtn.style.background = 'none';
             this.difficulty.innerText = this.proBtn.innerText.toUpperCase();
             this.gameOverDifficulty.innerText = ` • ${this.difficulty.innerText} •`;
+            message = `<b>Pro</b> <br> 2s is allocated to 5 letters. So for an 11 letter word, 4s is the
+            given time limit to complete typing. But considering the leftover letter(s), as long as
+            they aren't up to 5 in length, an additional 1s is given, therefore for an 11 letter word,
+            5s is the given time limit.`;
+            clearTimeout(timeout);
+            this.logToolTip(message);
         })
 
         //------------------ user starts game by clicking play button -----------------
