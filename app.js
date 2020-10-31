@@ -271,6 +271,7 @@ const game = {
                 setTimeout(() => {  
                     this.userInput.classList.remove('shake');
                 }, 200);
+                navigaor.vibrate(300); //vibrate device on error input
             }
 
             //----------- user inserts correct text ----------
