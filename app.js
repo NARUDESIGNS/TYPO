@@ -267,7 +267,7 @@ const game = {
             if(!this.gameText.innerText.startsWith(this.userInput.value)){            
                 this.userInput.style.backgroundColor = 'var(--red, rgb(255, 93, 93))';
                 this.userInput.classList.add('shake');
-                this.errorTone.play();
+                //this.errorTone.play();
                 setTimeout(() => {  
                     this.userInput.classList.remove('shake');
                 }, 200);
