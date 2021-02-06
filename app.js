@@ -152,7 +152,6 @@ const game = {
             }, 2000);
             this.inputIsValid = false;
         }
-
     },
 
     //---------------- LOG DIFFICULTY INFO -------------------------
@@ -305,7 +304,6 @@ const game = {
             else{
                 this.userInput.style.backgroundColor = 'var(--input-color, rgb(43, 44, 49))';     
             }
-
         });
 
         // --------------       PAUSE        --------------------
@@ -338,7 +336,6 @@ const game = {
                     this.userInput.focus();
                 });                
             }
-
         });
 
         // --------------       RESTART        --------------------
@@ -375,10 +372,8 @@ const game = {
                 this.hide(this.gamePage);
                 this.show(this.setupPage);
                 isNewHighScore = false; 
-            });
-            
+            }); 
         });
-           
     },
 
     //GAME OVER
@@ -411,11 +406,6 @@ const game = {
             this.changeGameText();
         })
     },
-    
 }
 
-game.launch();
-// game.show(game.gamePage);
-// game.hide(game.introPage);
-//game.score.innerText = 0;
-//this.score.innerText = '8944'                
+game.launch();        
